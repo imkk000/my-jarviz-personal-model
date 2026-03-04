@@ -1,24 +1,28 @@
 import os
 import torch
-from unsloth import FastVisionModel
-from unsloth.trainer import UnslothVisionDataCollator
-from unsloth.chat_templates import get_chat_template
+from unsloth import FastLanguageModel
 from trl import SFTTrainer, SFTConfig
 from datasets import load_dataset
-
-model_name = "unsloth/Llama-3.2-11B-Vision-bnb-4bit"
-max_seq_length = 2048
+from unsloth.chat_templates import get_chat_template
 
 os.environ["UNSLOTH_VERBOSE"] = "1"
 
+print(f"cuda enabled: {torch.cuda.is_available()}")
+print(f"device: {torch.cuda.get_device_name(0)}")
 
-print(f"cuda: {torch.cuda.get_device_name(0)} ({torch.cuda.is_available()})")
+from_model_name = "unsloth/Meta-Llama-3.1-8B-Instruct-bnb-4bit"
+to_model_name = "jarviz"
+max_seq_length = 2048
 
-model, tokenizer = FastVisionModel.from_pretrained(
-    "unsloth/Llama-3.2-11B-Vision-Instruct",
+model, tokenizer = FastLanguageModel.from_pretrained(
+    model_name=from_model_name,
+    max_seq_length=max_seq_length,
+    dtype=None,  # Auto selected
     load_in_4bit=True,
-    dtype=None,
-    use_gradient_checkpointing="unsloth",
+    load_in_8bit=False,
+    load_in_16bit=False,
+    full_finetuning=False,
+    trust_remote_code=False,
 )
 
 tokenizer = get_chat_template(
@@ -27,69 +31,76 @@ tokenizer = get_chat_template(
 )
 
 
-def convert_alpaca_to_messages(example):
-    user_content = example["instruction"]
-    if example["input"]:
-        user_content += f"\n\n{example['input']}"
-
-    return {
-        "messages": [
-            {"role": "user", "content": [{"type": "text", "text": user_content}]},
-            {
-                "role": "assistant",
-                "content": [{"type": "text", "text": example["output"]}],
-            },
-        ]
-    }
-
-
 def formatting_prompts_func(examples):
+    instructions = examples["instruction"]
+    inputs = examples["input"]
+    outputs = examples["output"]
     texts = []
-    for msgs in examples["messages"]:
+
+    for instruction, input_, output in zip(instructions, inputs, outputs):
+        # Build input content
+        user_content = instruction
+        if input_:
+            user_content += f"\n\n{input_}"
+
+        # Llama 3 chat format
+        messages = [
+            {"role": "user", "content": user_content},
+            {"role": "assistant", "content": output},
+        ]
+
+        # tokenize_with_template adds special tokens + eos automatically
         text = tokenizer.apply_chat_template(
-            msgs,
+            messages,
             tokenize=False,
             add_generation_prompt=False,
         )
         texts.append(text)
+
     return {"text": texts}
 
 
 dataset = load_dataset(
     "json", data_files={"train": "./dataset/**/*.json"}, split="train"
 )
-dataset = dataset.map(convert_alpaca_to_messages)
 dataset = dataset.map(formatting_prompts_func, batched=True)
 
 
-model = FastVisionModel.get_peft_model(
+model = FastLanguageModel.get_peft_model(
     model,
-    finetune_vision_layers=True,  # False if not finetuning vision layers
-    finetune_language_layers=True,  # False if not finetuning language layers
-    finetune_attention_modules=True,  # False if not finetuning attention layers
-    finetune_mlp_modules=True,  # False if not finetuning MLP layers
     r=16,
+    target_modules=[
+        "q_proj",
+        "k_proj",
+        "v_proj",
+        "o_proj",
+        "gate_proj",
+        "up_proj",
+        "down_proj",
+    ],
     lora_alpha=16,
     lora_dropout=0,
     bias="none",
+    use_gradient_checkpointing="unsloth",
     random_state=3407,
+    max_seq_length=max_seq_length,
     use_rslora=False,
     loftq_config=None,
 )
 
-FastVisionModel.for_training(model)
-
 trainer = SFTTrainer(
     model=model,
     tokenizer=tokenizer,
-    data_collator=UnslothVisionDataCollator(model, tokenizer),
     train_dataset=dataset,
+    dataset_text_field="text",
+    max_seq_length=max_seq_length,
+    packing=False,
     args=SFTConfig(
         per_device_train_batch_size=2,
         gradient_accumulation_steps=4,
         warmup_steps=5,
-        # max_steps=30,
-        num_train_epochs=1,
+        num_train_epochs=3,
+        max_steps=-1,
         learning_rate=2e-4,
         logging_steps=1,
         optim="adamw_8bit",
@@ -98,16 +109,8 @@ trainer = SFTTrainer(
         seed=3407,
         output_dir="outputs",
         report_to="none",
-        remove_unused_columns=False,
-        dataset_text_field="",
-        dataset_kwargs={},
-        max_length=max_seq_length,
     ),
 )
 trainer.train()
 
-model.save_pretrained_merged(
-    "jarviz",
-    tokenizer,
-    save_method="merged_16bit",
-)
+model.save_pretrained_gguf(to_model_name, tokenizer, quantization_method="q4_k_m")

@@ -1,4 +1,4 @@
-# JAVIZ
+# J.A.R.V.I.Z
 
 ## Workflow
 
@@ -29,6 +29,25 @@ conda init
 conda activate unsloth_env
 ```
 
+- Llama.cpp in unsloth did not support `MllamaForConditionalGeneration` yet.
+- Workaround with build `llama.cpp` from source
+- So, I have to install `cuda` with `yay -S cuda`
+
+```
+fish_add_path /opt/cuda/bin
+set -gx LD_LIBRARY_PATH /opt/cuda/lib64
+```
+
+Gave up to vision model from llama 3.2 11B.
+I will fallback to `llama 3.1 8B` or `llama 3.2 3B`
+
+### Future Upgrade Path
+
+- [ ] Llama 3.2 11B Vision
+  - Blocked: MllamaForConditionalGeneration GGUF conversion not supported
+  - Track: [https://github.com/ggml-org/llama.cpp/pull/11292](https://github.com/ggml-org/llama.cpp/pull/11292)
+  - Upgrade when: llama.cpp adds convert support
+
 ## Prompt
 
 - Need AI to make my dataset output natural (More formal and correct grammar)
@@ -51,11 +70,13 @@ Return as JSON array.
 - Learn to design GOOD and BAD
 - Using `behavior` category (learn, reason, explain, teach, decide)
 - Start with `alpaca` template with JSON
-- Based on `llama`, I should format to `llama` template in the future
+- Based on `llama`, I format to `llama` template
+- Can prepare dataset for text and image content
 
 ## Resources
 
-- [llama-notebooks](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Llama3_(8B)-Conversational.ipynb)
+- [save-to-gguf](https://unsloth.ai/docs/basics/inference-and-deployment/saving-to-gguf)
+- [llama-notebooks-3.2-11B-vision](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Llama3.2_(11B)-Vision.ipynb)
 - [unsloth](https://unsloth.ai/docs)
 - [model](https://huggingface.co/unsloth/Llama-3.2-3B-Instruct-bnb-4bit)
 - [efficient-fine-tuning](learnopencv.com/unsloth-guide-efficient-llm-fine-tuning/)
