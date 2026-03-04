@@ -1,0 +1,62 @@
+[
+  {
+    "text": "Binary search solves the classic 'find target in sorted array' pattern. Time complexity: O(log n) search, O(1) space. Use it when the input is sorted and you need to locate an element efficiently. Implement by maintaining left and right pointers, computing mid = left + (right - left) / 2, then narrowing the search space based on whether arr[mid] equals, is less than, or greater than the target."
+  },
+  {
+    "text": "Binary search on answer space solves 'find minimum/maximum value satisfying a condition' pattern. Time complexity: O(log(max-min) * f(n)) where f(n) is the cost of the feasibility check. Use when the answer lies in a monotonic range and you can write a predicate that returns true/false. Binary search on the value range rather than an array index."
+  },
+  {
+    "text": "Lower bound binary search solves the 'find first position where arr[i] >= target' pattern. Time complexity: O(log n). Use when you need the leftmost valid insertion point. Implement with: while left < right, mid = left + (right - left) / 2, if arr[mid] < target then left = mid + 1 else right = mid. Return left."
+  },
+  {
+    "text": "Upper bound binary search solves the 'find first position where arr[i] > target' pattern. Time complexity: O(log n). Use when you need the rightmost valid insertion point or count of a value. Implement with: while left < right, mid = left + (right - left) / 2, if arr[mid] <= target then left = mid + 1 else right = mid. Return left."
+  },
+  {
+    "text": "Binary search on rotated sorted array solves the pattern: find target in an array that was sorted then rotated at an unknown pivot. Time complexity: O(log n). Use when the sorted invariant is partially preserved. Determine which half is properly sorted by comparing arr[mid] with arr[left], then decide which half to search based on whether target falls within the sorted half."
+  },
+  {
+    "text": "Binary search for peak element solves the 'find any local maximum in unsorted array' pattern. Time complexity: O(log n). Use when any peak is acceptable and neighboring comparisons are valid. If arr[mid] < arr[mid+1], peak is in the right half (left = mid + 1), else peak is in the left half including mid (right = mid). Return left when left == right."
+  },
+  {
+    "text": "Binary search with duplicates (find first/last occurrence) solves the 'search in array with repeated values' pattern. Time complexity: O(log n). Use when you need exact boundary indices of a target range. For first occurrence, when arr[mid] == target set right = mid; for last occurrence set left = mid + 1 and track the answer separately."
+  },
+  {
+    "text": "Binary search on 2D matrix solves the 'find target in row-wise and column-wise sorted matrix' pattern. Time complexity: O(log(m*n)). Use when matrix rows are sorted and each row starts after the last element of the previous row. Treat the matrix as a flattened sorted array: mid_val = matrix[mid / cols][mid % cols]."
+  },
+  {
+    "text": "Binary search for minimum in rotated array solves the 'find the rotation pivot' pattern. Time complexity: O(log n). Use to locate the smallest element after an unknown rotation. If arr[mid] > arr[right], the minimum is in the right half (left = mid + 1), otherwise it is in the left half including mid (right = mid). Return arr[left]."
+  },
+  {
+    "text": "Exponential search (doubling + binary search) solves the 'find target in unbounded or infinite sorted array' pattern. Time complexity: O(log n). Use when the array size is unknown. Double the index i until arr[i] >= target, then binary search within [i/2, i]. This avoids scanning from index 0 to an unknown bound linearly."
+  },
+  {
+    "text": "Binary search applied to 'Kth smallest in sorted matrix' pattern: find the K-th smallest value among all matrix values. Time complexity: O(n log(max-min)). Binary search on the value range; the feasibility check counts how many values are <= mid using a staircase traversal from the top-right corner in O(n) time."
+  },
+  {
+    "text": "Binary search for 'split array largest sum' (minimize the maximum subarray sum) solves the partition optimization pattern. Time complexity: O(n log(sum)). Use when you want to minimize a maximum or maximize a minimum across partitions. Binary search on the answer range [max_element, total_sum]; feasibility check verifies if k or fewer subarrays can be formed with each sum <= mid."
+  },
+  {
+    "text": "Binary search for square root / nth root estimation solves the 'find integer root without using math library' pattern. Time complexity: O(log n). Use when you need integer floor of a root. Binary search the range [1, n]; check mid*mid <= n (or mid^k <= n). The result is the largest mid where the condition holds."
+  },
+  {
+    "text": "Binary search on frequency: 'count of elements in range [lo, hi] in a sorted array'. Time complexity: O(log n). Use to answer range frequency queries efficiently. Apply upper_bound(hi) - lower_bound(lo) using two binary searches. Each call returns the boundary index, and their difference gives the count."
+  },
+  {
+    "text": "Binary search for 'median of two sorted arrays' solves the partition pattern. Time complexity: O(log(min(m,n))). Binary search on the smaller array to find a partition such that all elements on the left side are <= all elements on the right side across both arrays. Adjust partition using maxLeft1 <= minRight2 and maxLeft2 <= minRight1 conditions."
+  },
+  {
+    "text": "Ternary search solves the 'find maximum of a unimodal function' pattern. Time complexity: O(log n). Use when the function strictly increases then decreases (or vice versa). Divide range into thirds: if f(m1) < f(m2) search right third, else search left third. Not to be confused with binary search, but conceptually extends it to non-monotonic objectives."
+  },
+  {
+    "text": "Binary search for 'capacity to ship packages in D days' solves the minimum capacity optimization pattern. Time complexity: O(n log(sum)). Use for scheduling and resource allocation problems. Binary search on capacity in range [max_weight, total_weight]; feasibility check simulates the greedy loading and counts days needed."
+  },
+  {
+    "text": "Binary search with custom comparator solves 'find target in array of objects or transformed values' pattern. Time complexity: O(log n). Use when direct value comparison is replaced by a derived key or projection. Pass a key function and compare key(arr[mid]) against target_key instead of raw values. Works the same as standard binary search structurally."
+  },
+  {
+    "text": "Binary search off-by-one pitfalls: always use mid = left + (right - left) / 2 (not (left + right) / 2) to avoid integer overflow. For upper-bound variants, use mid = left + (right - left + 1) / 2 (ceiling division) to prevent infinite loops when left + 1 == right. The exit condition left == right ensures a single valid answer remains."
+  },
+  {
+    "text": "Binary search template summary: three standard templates. Template 1: while left <= right (find exact target, terminates when left > right). Template 2: while left < right with right = mid (find leftmost condition, terminates with left == right). Template 3: while left + 1 < right (keeps two-element window, terminates with exactly two candidates to check post-loop). Choose based on whether the invariant includes or excludes the boundary."
+  }
+]

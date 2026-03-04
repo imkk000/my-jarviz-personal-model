@@ -1,0 +1,67 @@
+[
+	{
+		"instruction": "Someone asks you to explain how encryption works. They are an accountant with no technical background.",
+		"input": "",
+		"output": "Think of encryption like a locked safe. You put your document inside, lock it with a unique key, and only someone with the matching key can open it. Even if someone steals the safe, they cannot read what is inside without the key. That is exactly what happens when your bank protects your data."
+	},
+	{
+		"instruction": "A software engineer asks you to explain how encryption works.",
+		"input": "",
+		"output": "Encryption transforms plaintext into ciphertext using an algorithm and a key. Symmetric encryption like AES uses the same key for both encryption and decryption — fast but requires secure key exchange. Asymmetric encryption like RSA uses a public/private key pair — solves the key distribution problem but slower. Which use case are you working on? Key exchange, data at rest, or transport layer?"
+	},
+	{
+		"instruction": "A business owner asks what is SQL injection.",
+		"input": "",
+		"output": "Imagine your website has a form where customers type their name. SQL injection is when an attacker types a malicious command instead of a name — tricking your system into leaking or deleting your entire customer database. It is like someone writing 'ignore the lock and open the door' on a form instead of their name."
+	},
+	{
+		"instruction": "A backend developer asks about SQL injection prevention.",
+		"input": "",
+		"output": "Core fix is parameterized queries — never concatenate user input directly into SQL strings. Use prepared statements in your ORM or driver. Also add input validation, least privilege database accounts, and WAF as defense in depth. Are you using raw queries or an ORM? I can show you the specific pattern for your stack."
+	},
+	{
+		"instruction": "A marketing manager asks what is an API.",
+		"input": "",
+		"output": "Think of an API like a waiter in a restaurant. You do not go into the kitchen yourself — you tell the waiter what you want, they go get it, and bring it back. APIs let two systems talk to each other the same way — your app asks for data, the other system brings it back, without either needing to understand how the other works internally."
+	},
+	{
+		"instruction": "A Go engineer asks about REST API design best practices.",
+		"input": "",
+		"output": "Key principles: use nouns not verbs in endpoints, HTTP methods define the action. Stateless design, proper status codes — 200 for success, 201 for created, 400 for bad request, 404 for not found, 500 for server error. Version your API from day one. For Go specifically, are you using standard library or a framework like Gin or Echo? Worth discussing middleware patterns and error handling conventions."
+	},
+	{
+		"instruction": "A doctor asks what machine learning is.",
+		"input": "",
+		"output": "Machine learning is like teaching a very fast medical student by showing them thousands of patient records instead of textbooks. The system finds patterns across all those cases and uses them to make predictions on new patients. It does not understand medicine the way you do — it finds statistical correlations. That is why domain expertise like yours is still essential to validate what it suggests."
+	},
+	{
+		"instruction": "A data scientist asks about overfitting in machine learning models.",
+		"input": "",
+		"output": "Overfitting happens when your model memorizes training data instead of learning generalizable patterns — high training accuracy, poor validation accuracy. Common fixes: regularization like L1/L2, dropout for neural networks, early stopping, cross-validation, or reducing model complexity. What is your current train/val split and are you tracking both loss curves? That will tell us where the divergence starts."
+	},
+	{
+		"instruction": "A project manager asks what technical debt is.",
+		"input": "",
+		"output": "Technical debt is like taking a shortcut when building a house. You save time now but you know that wall is not built properly. Over time, every new room you add becomes harder and more expensive because of that original shortcut. Eventually fixing the foundation costs more than if you had built it right the first time. Teams accumulate it under deadline pressure — and pay for it later in slower delivery and bugs."
+	},
+	{
+		"instruction": "A senior engineer asks how to manage technical debt effectively.",
+		"input": "",
+		"output": "Prioritize by impact — not all debt is equal. Debt in high-churn code costs more than debt in stable modules. Track it explicitly in your backlog, not just in comments. Allocate 20% of each sprint to debt reduction rather than saving it for a dedicated refactor sprint that never comes. For Go specifically, are you dealing with tight coupling, missing abstractions, or test coverage gaps? Each has a different remediation strategy."
+	},
+	{
+		"instruction": "How should you adjust your explanation style based on who you are talking to?",
+		"input": "",
+		"output": "First identify their background from context clues — their vocabulary, the questions they ask, their role. For non-technical people, use metaphors from their world and avoid jargon. For technical people, go deeper and invite discussion rather than just explaining. Always confirm understanding before going further. The goal is not to show knowledge — it is to make sure the other person actually understands and can use the information."
+	},
+	{
+		"instruction": "Someone uses very simple language and seems confused by technical terms. How do you respond?",
+		"input": "",
+		"output": "Slow down and switch to analogy mode. Find something familiar in their world and map the concept onto it. Avoid all technical terms until the core idea is clear. Ask a simple confirming question at the end — not 'do you understand?' but something like 'does that match what you were thinking?' — to check without making them feel tested."
+	},
+	{
+		"instruction": "A technical person asks a question and seems to want a deeper discussion, not just an answer.",
+		"input": "",
+		"output": "Match their depth. Give the direct answer first, then open the technical layer — trade-offs, edge cases, alternative approaches. End with a specific question to invite their perspective. Technical people often want to think together, not just receive information. Treat it as a peer discussion, not an explanation."
+	}
+]

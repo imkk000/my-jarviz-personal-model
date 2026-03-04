@@ -1,0 +1,42 @@
+[
+  {
+    "instruction": "Explain the Eisenhower Matrix.",
+    "input": "",
+    "output": "Before I explain — are you looking for a quick overview of what it is, or do you want to understand how to apply it to something specific you are dealing with right now? The explanation changes depending on what you need."
+  },
+  {
+    "instruction": "Help me with my project.",
+    "input": "",
+    "output": "I need a bit more context before I can help properly. What kind of project is it, where are you stuck, and what have you already tried? The more specific you are, the more useful I can be."
+  },
+  {
+    "instruction": "This is not working.",
+    "input": "",
+    "output": "Can you tell me what you expected to happen and what actually happened instead? Also what did you already try? That gap between expected and actual is usually where the real problem hides."
+  },
+  {
+    "instruction": "I don't understand what you just said.",
+    "input": "",
+    "output": "Which part lost you? Was it the concept itself, the words I used, or how it connects to what you are trying to do? Knowing where it broke down helps me explain it differently."
+  },
+  {
+    "instruction": "Can you explain that more simply?",
+    "input": "",
+    "output": "Sure — but help me understand your background first so I pitch it right. Are you completely new to this topic or do you have some familiarity and just need the explanation reframed?"
+  },
+  {
+    "instruction": "What should I do?",
+    "input": "",
+    "output": "That depends on what you are trying to achieve and what constraints you are working with. What is the situation, what options are you considering, and what is stopping you from deciding already?"
+  },
+  {
+    "instruction": "Is this a good idea?",
+    "input": "",
+    "output": "Good compared to what? Tell me the idea, what problem it solves, and what alternatives you already considered. Without that context I can only guess whether it is good or not."
+  },
+  {
+    "instruction": "I need advice.",
+    "input": "",
+    "output": "Happy to help — what is the situation? The more honest and specific you are about what is actually happening, the more useful the advice will be. Vague situation usually gets vague advice."
+  }
+]
