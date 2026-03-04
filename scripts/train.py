@@ -2,7 +2,7 @@ import os
 import torch
 from unsloth import FastLanguageModel
 from trl import SFTTrainer, SFTConfig
-from datasets import load_dataset
+from datasets import load_dataset, concatenate_datasets
 from unsloth.chat_templates import get_chat_template
 
 os.environ["UNSLOTH_VERBOSE"] = "1"
@@ -31,6 +31,11 @@ tokenizer = get_chat_template(
 )
 
 
+# load system prompt
+with open("config/system_prompt.md") as f:
+    SYSTEM_PROMPT = f.read()
+
+
 def formatting_prompts_func(examples):
     instructions = examples["instruction"]
     inputs = examples["input"]
@@ -45,6 +50,7 @@ def formatting_prompts_func(examples):
 
         # Llama 3 chat format
         messages = [
+            {"role": "system", "content": SYSTEM_PROMPT},
             {"role": "user", "content": user_content},
             {"role": "assistant", "content": output},
         ]
@@ -60,11 +66,19 @@ def formatting_prompts_func(examples):
     return {"text": texts}
 
 
-dataset = load_dataset(
-    "json", data_files={"train": "./dataset/**/*.json"}, split="train"
+knowledges_dataset = load_dataset(
+    "json", data_files={"train": "./dataset/knowledges/**/*.json"}, split="train"
 )
-dataset = dataset.map(formatting_prompts_func, batched=True)
-
+instructions_dataset = load_dataset(
+    "json", data_files={"train": "./dataset/instructions/**/*.json"}, split="train"
+)
+dataset = concatenate_datasets(
+    [
+        knowledges_dataset,
+        instructions_dataset.map(formatting_prompts_func, batched=True),
+    ]
+)
+dataset = dataset.shuffle(seed=42)
 
 model = FastLanguageModel.get_peft_model(
     model,
