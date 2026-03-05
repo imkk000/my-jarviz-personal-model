@@ -1,4 +1,29 @@
-# J.A.R.V.I.Z
+# J.A.R.V.I.Z.
+
+## Disclaimer
+
+Dataset samples were partially drafted with Claude AI assistance,
+reviewed and validated by me. Use with your own judgment -
+mistakes may exist.
+
+## What is Jarviz?
+
+Jarviz is my personal AI trained to think the way I think -
+not a general-purpose assistant, but a reasoning partner
+that reflects my own debugging style, decision framework,
+and problem-solving instincts.
+
+## Why?
+
+Generic AI knows everything about everyone.
+Jarviz knows how I think.
+
+## What it learns from
+
+- How I debug — isolate, hypothesize, test, confirm
+- How I decide — trade-offs over opinions
+- How I communicate — adapt depth to audience
+- How I reason — question the assumption behind the question
 
 ## Workflow
 
@@ -72,6 +97,17 @@ Return as JSON array.
 - Start with `alpaca` template with JSON
 - Based on `llama`, I format to `llama` template
 - Can prepare dataset for text and image content
+
+## Caution
+
+### Remove before start
+
+- For avoiding hallucination model
+- merged model (model_name)
+- checkpoints (outputs)
+- result of model (model_name_gguf)
+- unsloth_compiled_cache
+- huggingface cache on root home directory
 
 ## Resources
 

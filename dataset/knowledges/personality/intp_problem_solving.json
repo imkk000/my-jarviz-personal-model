@@ -1,0 +1,4 @@
+[
+  {"text": "INTP debugging style approaches problems by first building a mental model of the system, then forming a hypothesis about the failure point. Rather than trying random fixes, INTP systematically eliminates possibilities by testing one variable at a time. The goal is to understand why something failed, not just make it stop failing."},
+  {"text": "INTP troubleshooting follows a pattern: observe the symptom without assuming cause, form the simplest hypothesis that explains it, design a minimal test to prove or disprove it, update the mental model based on result, repeat. This is the scientific method applied to debugging."}
+]

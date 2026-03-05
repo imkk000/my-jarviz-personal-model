@@ -17,45 +17,41 @@ max_seq_length = 2048
 model, tokenizer = FastLanguageModel.from_pretrained(
     model_name=from_model_name,
     max_seq_length=max_seq_length,
-    dtype=None,  # Auto selected
+    dtype=None,
     load_in_4bit=True,
-    load_in_8bit=False,
-    load_in_16bit=False,
     full_finetuning=False,
     trust_remote_code=False,
 )
 
-tokenizer = get_chat_template(
-    tokenizer,
-    chat_template="llama-3",
-)
-
-
 # load system prompt
-with open("config/system_prompt.md") as f:
+with open("config/system_prompt.md", encoding="utf-8") as f:
     SYSTEM_PROMPT = f.read()
 
 
 def formatting_prompts_func(examples):
-    instructions = examples["instruction"]
-    inputs = examples["input"]
-    outputs = examples["output"]
+    raw_text = examples.get("text", [])
+    instructions = examples.get("instruction", [])
+    inputs = examples.get("input", [])
+    outputs = examples.get("output", [])
     texts = []
 
+    # make static knowledge prompt template (avoid hallucinations)
+    if not instructions:
+        instructions = ["What do you know about this?"] * len(raw_text)
+        inputs = [""] * len(raw_text)
+        outputs = raw_text
+
     for instruction, input_, output in zip(instructions, inputs, outputs):
-        # Build input content
         user_content = instruction
         if input_:
             user_content += f"\n\n{input_}"
 
-        # Llama 3 chat format
         messages = [
             {"role": "system", "content": SYSTEM_PROMPT},
             {"role": "user", "content": user_content},
             {"role": "assistant", "content": output},
         ]
 
-        # tokenize_with_template adds special tokens + eos automatically
         text = tokenizer.apply_chat_template(
             messages,
             tokenize=False,
@@ -74,9 +70,9 @@ instructions_dataset = load_dataset(
 )
 dataset = concatenate_datasets(
     [
-        knowledges_dataset,
+        knowledges_dataset.map(formatting_prompts_func, batched=True),
         instructions_dataset.map(formatting_prompts_func, batched=True),
-    ]
+    ],
 )
 dataset = dataset.shuffle(seed=42)
 
@@ -113,8 +109,8 @@ trainer = SFTTrainer(
         per_device_train_batch_size=2,
         gradient_accumulation_steps=4,
         warmup_steps=5,
-        num_train_epochs=3,
-        max_steps=-1,
+        num_train_epochs=1,
+        max_steps=60,
         learning_rate=2e-4,
         logging_steps=1,
         optim="adamw_8bit",
@@ -123,6 +119,7 @@ trainer = SFTTrainer(
         seed=3407,
         output_dir="outputs",
         report_to="none",
+        overwrite_output_dir=True,
     ),
 )
 trainer.train()

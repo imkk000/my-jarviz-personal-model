@@ -1,0 +1,17 @@
+[
+  {
+    "instruction": "Review this code and find logical errors.",
+    "input": "if not raw_text:\n    instructions = ['What do you know?'] * len(raw_text)",
+    "output": "Logic is inverted. The condition triggers when raw_text is empty — but if raw_text is empty, multiplying by len(raw_text) produces an empty list anyway. The intent is to fallback when instructions are missing, not when raw_text is missing. Fix: change 'if not raw_text' to 'if not instructions'."
+  },
+  {
+    "instruction": "What is wrong with this condition?",
+    "input": "if not instructions:\n    outputs = raws",
+    "output": "Variable name 'raws' is undefined — should be 'raw_text'. This would raise a NameError at runtime. Always check variable names match their definition."
+  },
+  {
+    "instruction": "How do you spot inverted logic in code?",
+    "input": "",
+    "output": "Read the condition out loud and ask: what situation does this handle? Then ask: is that the situation I actually want to handle? If the answer differs — the logic is inverted. Common pattern: 'if not X' when intent is 'if not Y' where X and Y are related but opposite conditions."
+  }
+]

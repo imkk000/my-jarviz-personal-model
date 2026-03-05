@@ -1,0 +1,77 @@
+[
+  {
+    "instruction": "What makes a good clarifying question?",
+    "input": "",
+    "output": "A good clarifying question targets the actual ambiguity, not the surface of what was said. It is specific, neutral in tone, and opens thinking rather than closes it. It seeks context before assuming cause. One question at a time — multiple questions at once overwhelms and signals you are not prioritizing what matters most."
+  },
+  {
+    "instruction": "Someone says their app is slow. What is a good first question?",
+    "input": "",
+    "output": "Ask: slow compared to when? This targets the baseline — was it always slow or did something change? That single answer determines whether this is a regression, a scaling issue, or a perception problem. Jumping to solutions without this wastes time."
+  },
+  {
+    "instruction": "Someone says they are stuck on a problem. What is a good question to ask?",
+    "input": "",
+    "output": "Ask: what have you already tried? This reveals their current mental model and prevents suggesting things they have already eliminated. It also shifts them from stuck to reflective — articulating attempts often unsticks thinking."
+  },
+  {
+    "instruction": "Someone asks for help choosing between two options. What is a good clarifying question?",
+    "input": "",
+    "output": "Ask: what matters most to you in this decision? This surfaces their actual criteria before analyzing the options. Without knowing what they optimize for, any comparison is just guessing."
+  },
+  {
+    "instruction": "Someone says they want to improve their code. What is a good first question?",
+    "input": "",
+    "output": "Ask: what specifically feels wrong about it right now? Improve is vague — it could mean readability, performance, testability, or maintainability. The answer determines where to focus. Improving the wrong dimension wastes effort."
+  },
+  {
+    "instruction": "Is 'did you try turning it off and on again?' a good clarifying question?",
+    "input": "",
+    "output": "No — it assumes a trivial cause without understanding the problem first. It signals you stopped thinking and reached for a default. Ask what actually happened and what the person already tried before suggesting anything."
+  },
+  {
+    "instruction": "Someone says their team is not communicating well. Is 'have you tried daily standups?' a good question?",
+    "input": "",
+    "output": "No — it jumps to a solution before understanding the problem. Communication issues have many causes: unclear ownership, trust problems, remote friction, misaligned priorities. Ask: what does poor communication look like specifically? That reveals the actual cause."
+  },
+  {
+    "instruction": "Is 'are you sure about this?' a good clarifying question?",
+    "input": "",
+    "output": "No — it is a leading question that implies doubt without substance. It puts the person on the defensive without adding value. If you have a specific concern, name it. Ask: what assumptions is this based on? That is more honest and more useful."
+  },
+  {
+    "instruction": "Someone shares a plan and asks for feedback. Is 'looks good, any concerns?' a good question?",
+    "input": "",
+    "output": "No — it is vague and passive. It signals you did not engage with the plan. Instead identify one specific assumption worth examining and ask about that. Targeted questions show real engagement and produce useful answers."
+  },
+  {
+    "instruction": "Is asking three questions at once a good practice?",
+    "input": "",
+    "output": "No — multiple questions at once forces the person to decide which to answer and signals you have not thought about what matters most. Ask the single most important question first. If the answer opens new questions, ask the next one then. One question at a time respects the other person's thinking."
+  },
+  {
+    "instruction": "Someone says they do not understand your explanation. What is a good follow up question?",
+    "input": "",
+    "output": "Ask: which part lost you? This is precise — it finds exactly where the understanding broke down instead of re-explaining everything from the start. Knowing the specific gap lets you fix only what needs fixing."
+  },
+  {
+    "instruction": "Someone says they want to learn machine learning. What is a bad first question?",
+    "input": "",
+    "output": "'Have you tried Coursera?' is a bad first question — it jumps to a resource before understanding their goal, background, or time constraints. A good first question is: what do you want to build or solve with machine learning? That determines everything else."
+  },
+  {
+    "instruction": "What is a leading question and why should it be avoided?",
+    "input": "",
+    "output": "A leading question implies the expected answer within the question itself. Example: 'Don't you think X is the better choice?' pushes toward X before the person has reasoned through it. Leading questions close thinking instead of opening it. They reveal your bias, not their truth. Ask neutral questions that genuinely seek their perspective."
+  },
+  {
+    "instruction": "When is it wrong to ask a clarifying question?",
+    "input": "",
+    "output": "When the context is already clear enough to respond usefully. Asking for clarification on something obvious wastes time and signals you are not paying attention. Clarify when ambiguity would send the response in a meaningfully different direction — not as a default habit before every answer."
+  },
+  {
+    "instruction": "Someone asks a vague question. Should you always ask for clarification before answering?",
+    "input": "",
+    "output": "Not always. If you can make a reasonable assumption, state it and answer — then check at the end. Example: 'I will assume you mean X — if that is wrong, let me know.' This is faster and often more useful than stopping to interrogate before adding any value."
+  }
+]

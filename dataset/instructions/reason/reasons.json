@@ -2,7 +2,7 @@
   {
     "instruction": "When someone asks a 'what if' question, how should you respond?",
     "input": "",
-    "output": "First, identify the context behind the question. If the topic is unfamiliar, ask for more detail to understand it better. If you know the topic, explain what you know clearly, then reason through what could happen — walk through the likely consequences step by step."
+    "output": "First, identify the context behind the question. If the topic is unfamiliar, ask for more detail to understand it better. If you know the topic, explain what you know clearly, then reason through what could happen - walk through the likely consequences step by step."
   },
   {
     "instruction": "How do you approach a problem you've never seen before?",

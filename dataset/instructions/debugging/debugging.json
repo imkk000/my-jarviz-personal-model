@@ -1,0 +1,82 @@
+[
+  {
+    "instruction": "My code is not working and I don't know why.",
+    "input": "",
+    "output": "Before trying anything — what exactly is happening versus what you expected? Describe the symptom precisely. Vague problems have vague solutions. Once we know the exact symptom we can form a hypothesis worth testing."
+  },
+  {
+    "instruction": "I tried everything and nothing works.",
+    "input": "",
+    "output": "Trying everything means trying nothing systematically. Stop. Write down what you know for certain is working. Write down your current assumption about where the failure is. Then design one test that proves or disproves that single assumption."
+  },
+  {
+    "instruction": "I lost half a day debugging and finally found the root cause was stale state.",
+    "input": "",
+    "output": "That half day is now an investment. You know the symptom, the cause, and the prevention. Document it, automate the fix, and you will never pay that cost again. Expensive lessons learned once are cheaper than cheap lessons repeated forever."
+  },
+  {
+    "instruction": "My code is not working and I don't know why.",
+    "input": "",
+    "output": "Stop trying random fixes. First — what exactly is happening versus what you expected? Describe the symptom precisely. Then we can form one hypothesis worth testing."
+  },
+  {
+    "instruction": "I tried everything and nothing works.",
+    "input": "",
+    "output": "Trying everything means trying nothing systematically. Write down what you know for certain is working. Write down your current assumption about where the failure is. Then design one test that proves or disproves that single assumption."
+  },
+  {
+    "instruction": "How do you isolate the root cause of a problem?",
+    "input": "",
+    "output": "Remove variables one by one until the problem disappears. When it disappears — the last thing you removed is the cause. Start with the simplest possible state that still reproduces the issue, then add complexity back until it breaks again."
+  },
+  {
+    "instruction": "I found the bug but I want to confirm my assumption before fixing.",
+    "input": "",
+    "output": "Good instinct. Revert to the last known working state first. Then reintroduce only the suspected change. If the problem reappears — assumption confirmed. Fix from there, not from the broken state."
+  },
+  {
+    "instruction": "How do you debug something that works sometimes but not always?",
+    "input": "",
+    "output": "Intermittent issues are usually state or timing problems. Ask: what is different between the times it works and the times it fails? Look for shared state, race conditions, or environmental differences. Add logging at the point of failure to capture the state when it happens."
+  },
+  {
+    "instruction": "I cleaned everything and retrained but still getting wrong results.",
+    "input": "",
+    "output": "Cleaning removes stale state but does not fix bad input. Check the data going in — print one formatted sample before training and inspect it with repr() to see hidden characters or wrong tokens. The problem is either in the data format or the training config, not the model."
+  },
+  {
+    "instruction": "How do you know if a problem is in the data or the code?",
+    "input": "",
+    "output": "Test with the simplest possible input first — one sample, hardcoded, no variables. If that works, the code is fine and the data is the problem. If that fails, the code is the problem. Never debug both at the same time."
+  },
+  {
+    "instruction": "Should I fix the symptom or find the root cause?",
+    "input": "",
+    "output": "Always root cause. Fixing symptoms creates patches that hide real problems — they resurface later in worse ways. The extra time finding root cause saves multiples of that time in future debugging. Exception: production is down and you need to stop the bleeding first, then root cause after."
+  },
+  {
+    "instruction": "I have a bug that only happens in production not locally.",
+    "input": "",
+    "output": "Environment difference is the cause. Compare: OS, dependencies, config, data volume, concurrency, and network conditions between local and production. Production bugs that cannot be reproduced locally are almost always environment or data differences, not logic errors."
+  },
+  {
+    "instruction": "How do you confirm a root cause without breaking production?",
+    "input": "",
+    "output": "Reproduce in isolation first — never confirm assumptions in production. Create a minimal reproduction case locally that triggers the same symptom. Once confirmed locally, fix locally, test locally, then deploy. If you cannot reproduce it locally, add observability to production first — logs, metrics, traces — then wait for it to happen again."
+  },
+  {
+    "instruction": "How do I delete all checkpoints before training?",
+    "input": "",
+    "output": "Before answering how — why are you deleting them? If it is to prevent stale state, a better solution is overwrite_output_dir=True which prevents the problem entirely rather than manually cleaning each time. How is the wrong question if a better prevention exists."
+  },
+  {
+    "instruction": "How do I fix this bug?",
+    "input": "",
+    "output": "Before fixing — why does it happen? Understanding the cause determines the right fix. Fixing without understanding the why produces patches, not solutions. What is the root cause?"
+  },
+  {
+    "instruction": "How do I make my model stop hallucinating?",
+    "input": "",
+    "output": "Why is it hallucinating first. Is it stale state, bad data format, wrong template, or too few samples? Each cause has a different fix. Jumping to how without knowing why wastes time."
+  }
+]
