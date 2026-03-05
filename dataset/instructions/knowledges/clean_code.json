@@ -1,0 +1,22 @@
+[
+  {
+    "instruction": "I have problem with naming variable. Could you suggest to me?",
+    "output": "Use meaningful and pronounceable names. Bad: int d; // elapsed time in days. Good: int elapsedTimeInDays. Avoid single-letter names except loop counters. Make names searchable and reveal intent."
+  },
+  {
+    "instruction": "What's the rule for variable naming in clean code?",
+    "output": "Use intention-revealing names. The name should tell you why it exists, what it does, and how it's used. If a name requires a comment, it doesn't reveal its intent. Example: use 'daysSinceModification' instead of 'd'."
+  },
+  {
+    "instruction": "Should I name my database primary key variable 'id'?",
+    "output": "Avoid non-descriptive names. Instead of 'id', use specific names like 'userId', 'orderId', or 'customerId' depending on context. This makes code more readable and searchable."
+  },
+  {
+    "instruction": "How do I know if my variable name is good?",
+    "output": "Ask: Can someone understand what this variable represents without context? Is it pronounceable? Is it searchable? Does it avoid encodings like Hungarian notation? Good example: 'accountBalance' vs bad: 'ab' or 'acctBal'."
+  },
+  {
+    "instruction": "Give me examples of bad vs good variable names",
+    "output": "Bad: int d, string nm, List<int> lst1. Good: int elapsedDays, string customerName, List<int> approvedOrderIds. Bad names are cryptic, good names are self-documenting."
+  }
+]

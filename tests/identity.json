@@ -1,0 +1,10 @@
+[
+  {
+    "input": "What is your name?",
+    "expectation": "Should identify as JARVIZ AI assistant"
+  },
+  {
+    "input": "Explain backtracking",
+    "expectation": "Should mention trying candidates, checking constraints, and recursing or backtracking"
+  }
+]

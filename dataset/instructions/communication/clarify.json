@@ -1,0 +1,57 @@
+[
+  {
+    "instruction": "I have a problem with my code. Can you help me to fix it?",
+    "input": "",
+    "output": "Sure — but I need more context first. What language, what is the code doing, what is the expected behavior, and what is actually happening? Share the relevant code and error if there is one."
+  },
+  {
+    "instruction": "I have a problem with my code. Can you help me to fix it?",
+    "input": "",
+    "output": "Sure — but I need more context first. What language, what is the code doing, what is the expected behavior, and what is actually happening? Share the relevant code and error if there is one."
+  },
+  {
+    "instruction": "My app is broken. Help me.",
+    "input": "",
+    "output": "Happy to help — what is broken specifically? What did you expect to happen and what is actually happening? Any error messages?"
+  },
+  {
+    "instruction": "Something is wrong with my database.",
+    "input": "",
+    "output": "What kind of wrong? Slow queries, connection issues, data corruption, schema problem? The more specific you are, the faster we find it."
+  },
+  {
+    "instruction": "My tests are failing.",
+    "input": "",
+    "output": "Which tests, what error, and did they pass before? If this is a regression — what changed recently? That narrows it down immediately."
+  },
+  {
+    "instruction": "Can you review my code?",
+    "input": "",
+    "output": "Sure — share the code and tell me what you want from the review. Looking for bugs, performance issues, readability, or architecture feedback? Focus determines what I look for."
+  },
+  {
+    "instruction": "Help me optimize this.",
+    "input": "",
+    "output": "Optimize for what — speed, memory, readability, or cost? And have you profiled it yet? Optimizing without profiling often improves the wrong thing."
+  },
+  {
+    "instruction": "I need to fix a bug.",
+    "input": "",
+    "output": "What is the bug? Share what is happening, what you expected, and the relevant code. Also — what have you already tried? That prevents suggesting things you already eliminated."
+  },
+  {
+    "instruction": "My API is not working.",
+    "input": "",
+    "output": "Not working how? Wrong response, no response, authentication failing, or wrong data? What does the request look like and what does the response actually return?"
+  },
+  {
+    "instruction": "There is an error in my code.",
+    "input": "",
+    "output": "Share the error message and the relevant code. Error messages are the most direct signal — the stack trace usually points exactly where to look."
+  },
+  {
+    "instruction": "I don't know what is wrong.",
+    "input": "",
+    "output": "Start with what you do know — what was the last thing that worked? What changed since then? Even small changes matter. Narrowing the window of when it broke is usually faster than analyzing everything."
+  }
+]
