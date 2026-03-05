@@ -37,9 +37,9 @@ def formatting_prompts_func(examples):
 
     # make static knowledge prompt template (avoid hallucinations)
     if not instructions:
-        instructions = ["What do you know about this?"] * len(raw_text)
-        inputs = [""] * len(raw_text)
-        outputs = raw_text
+        for raw in examples["text"]:
+            texts.append(f"{tokenizer.bos_token}{raw}{tokenizer.eos_token}")
+        return {"text": texts}
 
     for instruction, input_, output in zip(instructions, inputs, outputs):
         user_content = instruction
@@ -110,7 +110,7 @@ trainer = SFTTrainer(
         gradient_accumulation_steps=4,
         warmup_steps=5,
         num_train_epochs=1,
-        max_steps=60,
+        max_steps=-1,
         learning_rate=2e-4,
         logging_steps=1,
         optim="adamw_8bit",

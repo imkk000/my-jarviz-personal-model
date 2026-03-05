@@ -17,8 +17,11 @@ warm_up:
 validate_json:
 	$(PYTHON) scripts/validate_json.py
 
-train: validate_json
+train: clean_up validate_json
 	$(PYTHON) scripts/train.py
+
+test:
+	$(PYTHON) scripts/test.py
 
 clean_up:
 	rm -rf $(MODEL_NAME)_gguf outputs unsloth_compiled_cache
@@ -33,7 +36,7 @@ build_llama.cpp:
 
 ollama:
 	ollama rm $(MODEL_NAME) || true
-	ollama create $(MODEL_NAME) -f ./$(MODEL_NAME)_gguf/Modelfile
+	ollama create $(MODEL_NAME) -f ./config/Modelfile
 
 webui:
 	mkdir ./.open-webui || true

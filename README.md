@@ -116,3 +116,12 @@ Return as JSON array.
 - [unsloth](https://unsloth.ai/docs)
 - [model](https://huggingface.co/unsloth/Llama-3.2-3B-Instruct-bnb-4bit)
 - [efficient-fine-tuning](learnopencv.com/unsloth-guide-efficient-llm-fine-tuning/)
+
+## Analogy
+
+```
+Ingredient (Base Model: Llama)
+-> Bake (Train my model)
+-> Bread (My trained model)
+-> Store (Modelfile: Custom based on trained model)
+```
